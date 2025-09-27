@@ -13,6 +13,8 @@ import { nextPublicProcessEnv } from './plugins/nextPublicProcessEnv';
 import { restart } from './plugins/restart';
 import { restartEnvFileChange } from './plugins/restartEnvFileChange';
 
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+
 export default defineConfig({
   // Keep them available via import.meta.env.NEXT_PUBLIC_*
   envPrefix: 'NEXT_PUBLIC_',
@@ -36,8 +38,17 @@ export default defineConfig({
     outDir: 'dist',
   },
   plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'public',
+          dest: '.'
+        }
+      ]
+    }),
     nextPublicProcessEnv(),
     restartEnvFileChange(),
+    reactRouter(),
     // reactRouterHonoServer({
     //   serverEntryPoint: './__create/index.ts',
     //   runtime: 'node',
@@ -64,7 +75,7 @@ export default defineConfig({
     consoleToParent(),
     loadFontsFromTailwindSource(),
     addRenderIds(),
-    reactRouter(),
+
     tsconfigPaths(),
     aliases(),
     layoutWrapperPlugin(),

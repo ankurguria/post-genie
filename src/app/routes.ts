@@ -116,4 +116,7 @@ const tree = buildRouteTree(__dirname);
 const notFound = route('*?', './__create/not-found.tsx');
 const routes = [...generateRoutes(tree), notFound];
 
+console.log('Route Tree:', JSON.stringify(tree, null, 2));
+console.log('Generated Routes:', routes);
+
 export default routes;
