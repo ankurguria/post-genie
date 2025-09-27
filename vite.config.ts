@@ -1,3 +1,4 @@
+import path from 'node:path';
 import { reactRouter } from '@react-router/dev/vite';
 import { vercelPreset } from '@vercel/react-router/vite';
 
