@@ -22,8 +22,7 @@ import {
 import './global.css';
 
 import fetch from '@/__create/fetch';
-// @ts-ignore
-import { SessionProvider } from '@auth/create/react';
+import { SessionProvider } from '@hono/auth-js/react';
 import { useNavigate } from 'react-router';
 import Header from './Header';
 import { serializeError } from 'serialize-error';
