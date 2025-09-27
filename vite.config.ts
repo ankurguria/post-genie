@@ -1,4 +1,3 @@
-import path from 'node:path';
 import { reactRouter } from '@react-router/dev/vite';
 import { vercelPreset } from '@vercel/react-router/vite';
 
@@ -7,7 +6,7 @@ import { defineConfig } from 'vite';
 import babel from 'vite-plugin-babel';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { addRenderIds } from './plugins/addRenderIds';
-import { aliases } from './plugins/aliases';
+// import { aliases } from './plugins/aliases'; // a re-implementation of what tsconfigPaths does
 import consoleToParent from './plugins/console-to-parent';
 import { layoutWrapperPlugin } from './plugins/layouts';
 import { loadFontsFromTailwindSource } from './plugins/loadFontsFromTailwindSource';
@@ -68,18 +67,10 @@ export default defineConfig({
     addRenderIds(),
     reactRouter({ presets: [vercelPreset()] }),
     tsconfigPaths(),
-    aliases(),
+    // aliases(),
     layoutWrapperPlugin(),
   ],
   resolve: {
-    alias: {
-      lodash: 'lodash-es',
-      'npm:stripe': 'stripe',
-      stripe: path.resolve(__dirname, './src/__create/stripe'),
-      '@auth/create/react': '@hono/auth-js/react',
-      '@auth/create': path.resolve(__dirname, './src/__create/@auth/create'),
-      '@': path.resolve(__dirname, 'src'),
-    },
     dedupe: ['react', 'react-dom'],
   },
   clearScreen: false,
