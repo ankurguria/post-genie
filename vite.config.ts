@@ -14,7 +14,9 @@ import { restart } from './plugins/restart';
 import { restartEnvFileChange } from './plugins/restartEnvFileChange';
 
 
-    export default defineConfig({
+    import { viteStaticCopy } from 'vite-plugin-static-copy';
+
+export default defineConfig({
   // Keep them available via import.meta.env.NEXT_PUBLIC_*
   envPrefix: 'NEXT_PUBLIC_',
   optimizeDeps: {
@@ -37,6 +39,14 @@ import { restartEnvFileChange } from './plugins/restartEnvFileChange';
     outDir: 'dist',
   },
   plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'netlify.toml',
+          dest: '.'
+        }
+      ]
+    }),
     nextPublicProcessEnv(),
     restartEnvFileChange(),
     reactRouter(),
