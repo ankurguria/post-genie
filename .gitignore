@@ -5,3 +5,9 @@
 /.react-router/
 /build/
 .env
+
+# YoYo AI version control directory
+.yoyo/
+
+# VS Code directory
+.vscode/
